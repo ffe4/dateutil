@@ -1483,7 +1483,7 @@ def __get_gettz():
         If no argument or an empty string is passed to ``gettz``, local time
         is returned:
 
-        .. code-block:: python3
+        .. code-block:: pycon
 
             >>> gettz()
             tzfile('/etc/localtime')
@@ -1491,7 +1491,7 @@ def __get_gettz():
         This function is also the preferred way to map IANA tz database keys
         to :class:`tzfile` objects:
 
-        .. code-block:: python3
+        .. code-block:: pycon
 
             >>> gettz('Pacific/Kiritimati')
             tzfile('/usr/share/zoneinfo/Pacific/Kiritimati')
@@ -1499,7 +1499,7 @@ def __get_gettz():
         On Windows, the standard is extended to include the Windows-specific
         zone names provided by the operating system:
 
-        .. code-block:: python3
+        .. code-block:: pycon
 
             >>> gettz('Egypt Standard Time')
             tzwin('Egypt Standard Time')
@@ -1507,7 +1507,7 @@ def __get_gettz():
         Passing a GNU ``TZ`` style string time zone specification returns a
         :class:`tzstr` object:
 
-        .. code-block:: python3
+        .. code-block:: pycon
 
             >>> gettz('AEST-10AEDT-11,M10.1.0/2,M4.1.0/3')
             tzstr('AEST-10AEDT-11,M10.1.0/2,M4.1.0/3')
@@ -1527,7 +1527,7 @@ def __get_gettz():
             After version 2.7.0, any two calls to ``gettz`` using the same
             input strings will return the same object:
 
-            .. code-block:: python3
+            .. code-block:: pycon
 
                 >>> tz.gettz('America/Chicago') is tz.gettz('America/Chicago')
                 True
