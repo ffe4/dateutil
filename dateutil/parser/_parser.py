@@ -733,6 +733,7 @@ class parser(object):
         i = 0
         try:
             while i < len_l:
+                token_skipped = False
 
                 # Check if it's a number
                 value_repr = l[i]
@@ -743,7 +744,10 @@ class parser(object):
 
                 if value is not None:
                     # Numeric token
-                    i = self._parse_numeric_token(l, i, info, ymd, res, fuzzy)
+                    try:
+                        i = self._parse_numeric_token(l, i, info, ymd, res, fuzzy)
+                    except ParserError:
+                        token_skipped = True
 
                 # Check weekday
                 elif info.weekday(l[i]) is not None:
@@ -855,6 +859,9 @@ class parser(object):
                     raise ValueError(timestr)
 
                 else:
+                    token_skipped = True
+
+                if token_skipped:
                     skipped_idxs.append(i)
                 i += 1
 
@@ -1006,6 +1013,9 @@ class parser(object):
 
         elif not fuzzy:
             raise ValueError()
+
+        else:
+            raise ParserError()
 
         return idx
 

@@ -732,6 +732,10 @@ class ParserTest(unittest.TestCase):
         else:
             pytest.fail("Failed to raise ParserError")
 
+    def test_fuzzy_with_tokens_returns_unused_numerical_token(self):
+        timestr = "23. November 2016:"
+        _, tokens = parse(timestr, fuzzy_with_tokens=True)
+        assert tokens == (" ", " 2016:")
 
 class TestOutOfBounds(object):
 
